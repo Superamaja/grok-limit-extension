@@ -1,0 +1,20 @@
+{
+    "manifest_version": 3,
+    "name": "Grok Rate Limit UI",
+    "version": "1.0.0",
+    "description": "Detects and displays the Grok rate limits on the page.",
+    "content_scripts": [
+        {
+            "matches": ["https://grok.com/*"],
+            "js": ["scriptLoader.js"]
+        }
+    ],
+    "web_accessible_resources": [
+        {
+            "matches": ["https://grok.com/*"],
+            "resources": ["grokRateLimitDetector.js"]
+        }
+    ],
+    "permissions": ["scripting"],
+    "host_permissions": ["https://grok.com/*"]
+}
