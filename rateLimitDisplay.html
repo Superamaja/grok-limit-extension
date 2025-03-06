@@ -1,0 +1,79 @@
+<div
+  style="
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  "
+>
+  <div class="rate-limit-container">
+    <span class="rate-limit-remaining" id="rate-limit-remaining">0/0</span>
+  </div>
+
+  <style>
+    .rate-limit-container {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        Helvetica, Arial, sans-serif;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 28px;
+      border-radius: 9999px;
+      padding: 0 12px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      background-color: transparent;
+      transition: background-color 0.15s ease;
+    }
+
+    /* .rate-limit-container:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        } */
+
+    .rate-limit-remaining {
+      font-size: 13px;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.8);
+      white-space: nowrap;
+    }
+  </style>
+  <script>
+    (function () {
+      "use strict";
+
+      // Override the native fetch function
+      const originalFetch = window.fetch;
+      window.fetch = function () {
+        const fetchPromise = originalFetch.apply(this, arguments);
+
+        // Check if the URL contains "rate-limits"
+        const url = arguments[0];
+        if (typeof url === "string" && url.includes("rate-limits")) {
+          console.log("Rate-limits request detected:", {
+            url: url,
+            time: new Date().toISOString(),
+            args: arguments,
+          });
+
+          // Optional: You can add more actions here when rate-limits is detected
+          // For example: alert('Rate-limits request found!');
+        }
+
+        return fetchPromise;
+      };
+
+      // Override XMLHttpRequest
+      const originalOpen = XMLHttpRequest.prototype.open;
+      XMLHttpRequest.prototype.open = function () {
+        const url = arguments[1];
+        if (typeof url === "string" && url.includes("rate-limits")) {
+          console.log("Rate-limits XHR request detected:", {
+            url: url,
+            time: new Date().toISOString(),
+            args: arguments,
+          });
+        }
+        return originalOpen.apply(this, arguments);
+      };
+    })();
+  </script>
+</div>
