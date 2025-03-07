@@ -1,21 +1,23 @@
 (function () {
-  // Function to load and insert HTML content
   function injectRateLimitDisplay() {
-    // Target the div with the specified class
     const targetDiv = document.querySelector(
       "div.flex.grow.gap-1\\.5.max-w-full"
     );
 
     if (!targetDiv) {
-      // If target div isn't found, retry after a delay
+      // Retry after a delay
       setTimeout(injectRateLimitDisplay, 500);
       return;
     }
 
-    // Create a new div element to hold our content
-    const rateLimitDiv = document.createElement("div");
+    // Check if our rate limit display element already exists
+    const existingRateLimit = document.querySelector(".rate-limit-container");
+    if (existingRateLimit) {
+      return;
+    }
 
-    // Load HTML content from our rateLimitDisplay.html file
+    // Load the HTML content
+    const rateLimitDiv = document.createElement("div");
     fetch(chrome.runtime.getURL("rateLimitDisplay.html"))
       .then((response) => response.text())
       .then((html) => {
@@ -82,4 +84,23 @@
   } else {
     injectRateLimitDisplay();
   }
+
+  // Track current URL to detect changes
+  let currentUrl = window.location.href;
+
+  // Create a MutationObserver to detect URL changes
+  const urlObserver = new MutationObserver(() => {
+    if (currentUrl !== window.location.href) {
+      currentUrl = window.location.href;
+      console.log("URL changed to:", currentUrl);
+      // Run the injection function when URL changes
+      setTimeout(injectRateLimitDisplay, 300); // Small delay to allow DOM to update
+    }
+  });
+
+  // Observe the whole document for changes
+  urlObserver.observe(document, {
+    subtree: true,
+    childList: true,
+  });
 })();
