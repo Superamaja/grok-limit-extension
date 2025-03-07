@@ -72,11 +72,41 @@
       });
   }
 
+  // Check if display exists and reinject if missing
+  function checkDisplayExists() {
+    const targetDiv = document.querySelector(
+      "div.flex.grow.gap-1\\.5.max-w-full"
+    );
+    const existingRateLimit = document.querySelector(".rate-limit-container");
+
+    if (targetDiv && !existingRateLimit) {
+      console.log("Rate limit display missing, reinjecting...");
+      injectRateLimitDisplay();
+    }
+  }
+
+  // Display check interval reference
+  let displayCheckInterval;
+
+  function startDisplayCheck() {
+    if (!displayCheckInterval) {
+      displayCheckInterval = setInterval(checkDisplayExists, 1500);
+    }
+  }
+
+  function stopDisplayCheck() {
+    if (displayCheckInterval) {
+      clearInterval(displayCheckInterval);
+      displayCheckInterval = null;
+    }
+  }
+
   // Initialize everything
   function initialize() {
     injectScript();
     listenForEvents();
     injectRateLimitDisplay();
+    startDisplayCheck(); // Start periodic monitoring
   }
 
   // Run on page load
@@ -91,7 +121,11 @@
   const urlObserver = new MutationObserver(() => {
     if (currentUrl !== window.location.href) {
       currentUrl = window.location.href;
-      setTimeout(initialize, 300);
+      setTimeout(() => {
+        initialize();
+        // Ensure we're checking for the display after navigation
+        startDisplayCheck();
+      }, 300);
     }
   });
 
@@ -99,4 +133,7 @@
     subtree: true,
     childList: true,
   });
+
+  // Clean up when the page is unloaded
+  window.addEventListener("unload", stopDisplayCheck);
 })();
