@@ -6,14 +6,14 @@
   "content_scripts": [
     {
       "matches": ["https://grok.com/*"],
-      "js": ["htmlLoader.js"],
+      "js": ["contentScript.js"],
       "html": ["rateLimitDisplay.html"]
     }
   ],
   "web_accessible_resources": [
     {
       "matches": ["https://grok.com/*"],
-      "resources": ["htmlLoader.js", "rateLimitDisplay.html"]
+      "resources": ["rateLimitDisplay.html", "networkMonitor.js"]
     }
   ],
   "permissions": ["scripting"],
