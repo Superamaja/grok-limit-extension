@@ -7,7 +7,8 @@
     {
       "matches": ["https://grok.com/*"],
       "js": ["contentScript.js"],
-      "html": ["rateLimitDisplay.html"]
+      "html": ["rateLimitDisplay.html"],
+      "css": ["styles.css"]
     }
   ],
   "web_accessible_resources": [
