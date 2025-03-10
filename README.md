@@ -28,16 +28,7 @@ The counter updates automatically whenever you send a message to Grok, as that's
 
 ### Manual Installation
 
-#### Option 1: From Release ZIP
-
-1. Download the latest release ZIP file from the [Releases page](https://github.com/yourusername/grok-extension/releases)
-2. Extract the ZIP file to a location on your computer
-3. Open Chrome and navigate to `chrome://extensions`
-4. Enable "Developer mode" in the top-right corner
-5. Click "Load unpacked" and select the extracted folder
-6. The extension is now installed and active when you visit grok.com
-
-#### Option 2: From Source
+#### From Source
 
 1. Clone this repository or download the source code
 2. Open Chrome and navigate to `chrome://extensions`
