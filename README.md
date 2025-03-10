@@ -48,7 +48,7 @@ The counter updates automatically whenever you send a message to Grok, as that's
 ## Usage
 
 1. Visit [grok.com](https://grok.com)
-2. You'll see a small counter in the top bar showing your remaining requests
+2. You'll see a small counter on the bottom right of the input area showing your remaining requests
 3. The counter updates each time you send a message
 4. Color changes indicate your remaining capacity:
    - White/Green: Plenty of requests left
