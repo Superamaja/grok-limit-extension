@@ -26,9 +26,8 @@
   function formatTimeRemaining(seconds) {
     if (!seconds || isNaN(seconds)) return "Unknown reset time";
 
-    // Convert seconds to hours with one decimal place
-    const hours = (seconds / 3600).toFixed(1);
-    return `${hours} hour${hours === "1.0" ? "" : "s"}`;
+    const hours = Math.floor(seconds / 3600);
+    return `${hours} hour${hours === 1 ? "" : "s"}`;
   }
 
   // Update the UI with rate limit information
