@@ -79,4 +79,6 @@ MIT License - See [LICENSE](LICENSE) file for details
 
 Created by [Connor](https://connorlin.dev/) - A Grok enthusiast who got tired of hitting rate limits unexpectedly.
 
+If you find this extension useful, consider starring the repository!
+
 <!-- If you find this extension useful, consider [buying me a coffee](https://www.buymeacoffee.com/) or starring the repository! -->
