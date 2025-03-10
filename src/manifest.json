@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "Grok Rate Limit UI",
+  "name": "Grok Limit UI",
   "version": "1.0.0",
   "description": "Detects and displays the Grok rate limits on the page.",
   "content_scripts": [
