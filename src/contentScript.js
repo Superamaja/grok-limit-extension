@@ -13,17 +13,40 @@
       const { action, data } = event.detail;
 
       if (action === "updateRateLimit") {
-        const { remainingQueries, totalQueries } = data;
-        updateRateLimitDisplay(remainingQueries, totalQueries);
+        const { remainingQueries, totalQueries, windowSizeSeconds } = data;
+        updateRateLimitDisplay(
+          remainingQueries,
+          totalQueries,
+          windowSizeSeconds
+        );
       }
     });
   }
 
+  function formatTimeRemaining(seconds) {
+    if (!seconds || isNaN(seconds)) return "Unknown reset time";
+
+    // Convert seconds to hours with one decimal place
+    const hours = (seconds / 3600).toFixed(1);
+    return `${hours} hour${hours === "1.0" ? "" : "s"}`;
+  }
+
   // Update the UI with rate limit information
-  function updateRateLimitDisplay(remainingQueries, totalQueries) {
+  function updateRateLimitDisplay(
+    remainingQueries,
+    totalQueries,
+    windowSizeSeconds
+  ) {
     const display = document.getElementById("rate-limit-remaining");
     if (display) {
       display.textContent = `${remainingQueries}/${totalQueries}`;
+
+      // Update tooltip with reset time information
+      const tooltipText = document.getElementById("rate-limit-tooltip-text");
+      if (tooltipText && windowSizeSeconds) {
+        const resetTime = formatTimeRemaining(windowSizeSeconds);
+        tooltipText.textContent = `Resets in: ${resetTime}`;
+      }
 
       // Change color based on remaining percentage
       const percentage = (remainingQueries / totalQueries) * 100;

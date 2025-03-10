@@ -13,10 +13,15 @@
     );
   }
 
-  function updateRateLimitDisplay(remainingQueries, totalQueries) {
+  function updateRateLimitDisplay(
+    remainingQueries,
+    totalQueries,
+    windowSizeSeconds
+  ) {
     sendToContentScript("updateRateLimit", {
       remainingQueries,
       totalQueries,
+      windowSizeSeconds,
     });
   }
 
@@ -31,6 +36,7 @@
         return {
           remainingQueries: data.remainingQueries,
           totalQueries: data.totalQueries,
+          windowSizeSeconds: data.windowSizeSeconds,
         };
       } else if (data) {
         // Handle different response formats if needed
@@ -43,6 +49,8 @@
               return {
                 remainingQueries: data[key].remaining,
                 totalQueries: data[key].limit,
+                windowSizeSeconds:
+                  data[key].windowSizeSeconds || data.windowSizeSeconds,
               };
             }
           }
@@ -82,7 +90,8 @@
           if (limits) {
             updateRateLimitDisplay(
               limits.remainingQueries,
-              limits.totalQueries
+              limits.totalQueries,
+              limits.windowSizeSeconds
             );
           }
         })
@@ -121,7 +130,11 @@
         lastResponse = xhr.responseText;
         const limits = parseRateLimitResponse(xhr.responseText);
         if (limits) {
-          updateRateLimitDisplay(limits.remainingQueries, limits.totalQueries);
+          updateRateLimitDisplay(
+            limits.remainingQueries,
+            limits.totalQueries,
+            limits.windowSizeSeconds
+          );
         }
 
         if (originalOnLoad) originalOnLoad.apply(this, arguments);
