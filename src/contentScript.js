@@ -27,9 +27,9 @@
 
       // Change color based on remaining percentage
       const percentage = (remainingQueries / totalQueries) * 100;
-      if (percentage < 10) {
+      if (percentage <= 10) {
         display.style.color = "rgba(255, 50, 50, 0.9)"; // Red when low
-      } else if (percentage < 30) {
+      } else if (percentage <= 30) {
         display.style.color = "rgba(255, 165, 0, 0.9)"; // Orange when medium
       } else {
         display.style.color = "rgba(255, 255, 255, 0.8)"; // Default color
