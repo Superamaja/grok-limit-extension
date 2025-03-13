@@ -58,6 +58,8 @@
 .light .tooltip-content {
   background-color: rgb(255, 255, 255);
   color: hsl(0, 0%, 4%);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.15);
 }
 
 .rate-limit-container:hover .rate-limit-tooltip {
