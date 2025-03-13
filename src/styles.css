@@ -14,11 +14,19 @@
   cursor: pointer;
 }
 
+.light .rate-limit-container {
+  border: 1px solid hsl(0 0% 4% / 10%);
+}
+
 .rate-limit-remaining {
   font-size: 13px;
   font-weight: 500;
-  color: rgba(255, 255, 255, 0.8);
+  color: hsl(40, 18%, 97%);
   white-space: nowrap;
+}
+
+.light .rate-limit-remaining {
+  color: hsl(0, 0%, 4%);
 }
 
 .rate-limit-tooltip {
@@ -45,6 +53,11 @@
   color: var(--text-popover-foreground, rgba(255, 255, 255, 0.9));
   white-space: nowrap;
   animation: fadeIn 0.2s ease-out;
+}
+
+.light .tooltip-content {
+  background-color: rgb(255, 255, 255);
+  color: hsl(0, 0%, 4%);
 }
 
 .rate-limit-container:hover .rate-limit-tooltip {

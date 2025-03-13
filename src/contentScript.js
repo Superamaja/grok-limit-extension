@@ -47,14 +47,18 @@
         tooltipText.textContent = `Resets in: ${resetTime}`;
       }
 
-      // Change color based on remaining percentage
+      // Change color based on remaining percentage and theme
       const percentage = (remainingQueries / totalQueries) * 100;
+      const isDarkMode = document.documentElement.classList.contains("dark");
+
       if (percentage <= 10) {
-        display.style.color = "rgba(255, 50, 50, 0.9)"; // Red when low
+        display.style.color = "rgba(255, 50, 50, 0.9)";
       } else if (percentage <= 30) {
-        display.style.color = "rgba(255, 165, 0, 0.9)"; // Orange when medium
+        display.style.color = "rgba(255, 165, 0, 0.9)";
       } else {
-        display.style.color = "rgba(255, 255, 255, 0.8)"; // Default color
+        display.style.color = isDarkMode
+          ? "hsl(40, 18%, 97%)"
+          : "hsl(0, 0%, 4%)";
       }
     }
   }
