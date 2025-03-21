@@ -53,7 +53,6 @@ Potential future enhancements:
 - Chrome Web Store release if it gains traction
 - Proactive updates when switching models or using different features
 - Automatic refresh of rate limit data
-- Visual countdown to rate limit reset
 - Customizable notification thresholds
 
 ## Development
