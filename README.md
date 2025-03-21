@@ -2,7 +2,7 @@
 
 A simple Chrome extension that displays your Grok rate limits directly in the Grok web interface.
 
-![Grok Rate Limit UI Screenshot](screenshots/preview.png)
+![Grok Rate Limit UI Screenshot](screenshots/preview_input.png)
 
 ## Description
 
