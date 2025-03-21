@@ -103,10 +103,21 @@
     const targetDiv = document.querySelector(
       "div.flex.grow.gap-1\\.5.max-w-full"
     );
-    const existingRateLimit = document.querySelector(".rate-limit-container");
+    const existingRateLimits = document.querySelectorAll(
+      ".rate-limit-container"
+    );
 
-    if (targetDiv && !existingRateLimit) {
-      console.log("Rate limit display missing, reinjecting...");
+    if (existingRateLimits.length > 1) {
+      // Remove duplicate displays, keeping only the first one
+      console.log(
+        `Found ${existingRateLimits.length} rate limit displays, removing duplicates...`
+      );
+      for (let i = 1; i < existingRateLimits.length; i++) {
+        existingRateLimits[i].parentElement.remove();
+      }
+    } else if (targetDiv && existingRateLimits.length === 0) {
+      // If no displays exist but target div is found, inject one
+      console.log("Rate limit display missing, injecting...");
       injectRateLimitDisplay();
     }
   }
