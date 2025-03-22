@@ -41,7 +41,7 @@ The counter updates automatically whenever you send a message to Grok, as that's
 1. Clone this repository or download the source code
 2. Open Safari settings and select the Advanced tab. Enable `Show features for web developers`
 3. In the Developer tab, enable `Allow unsigned extensions`
-4. Open `Grok Limit UI Safari/Grok Limit UI.xcodeproj` in xCode
+4. Open `safari/Grok Limit UI.xcodeproj` in xCode
 5. Build and Run the application
 6. A window will open up saying the extension is not enabled in Safari. Click `Quit and Open Safari Settings`
 7. Enable the extension in the Safari Extensions tab
